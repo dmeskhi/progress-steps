@@ -1,104 +1,163 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
-    --line-border-fill: #3498db;
-    --line-border-empty: #e0e0e0;
+  --primary-color: #3498db;
+  --primary-color-empty: #e0e0e0;
 }
 
-* {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
-  }
+  font-size: 62.5%;
+}
 
 body {
-    background-color: #f6f7fb;
-    font-family: "Mulish", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    margin: 0;
+  background-color: #f6f7fb;
+  font-family: "Mulish", sans-serif;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
 
-.container {
-    text-align: center;
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
-.progress-container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 3rem;
-    max-width: 100%;
-    width: 35rem;
+input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
 }
 
-.progress-container::before {
-    content: "";
-    background-color: var(--line-border-empty);
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    height: 0.4rem;
-    width: 100%;
-    z-index: -1;
+.width-50 {
+  width: 50%;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Progressbar */
+.progressbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  counter-reset: step;
+  margin: 2rem 0 4rem;
+}
+
+.progressbar::before,
+.progress {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  background-color: #dcdcdc;
+  z-index: -1;
 }
 
 .progress {
-    background-color: var(--line-border-fill);
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    height: 0.4rem;
-    width: 0%;
-    z-index: -1;
-    transition: 0.4s ease;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: 0.3s;
 }
 
-.circle {
-    background-color: #fff;
-    color: #999;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0.3rem solid var(--line-border-empty);
-    transition: 0.4s ease;
+.progress-step {
+  width: 3rem;
+  height: 3rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.3rem solid #e0e0e0;
 }
 
-.circle.active {
-    border-color: var(--line-border-fill);
+.progress-step::before {
+  counter-increment: step;
+  content: counter(step);
+}
+
+.progress-step::after {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  font-size: 1rem;
+  color: #666;
+}
+
+.progress-step-active {
+  background-color: var(--primary-color);
+  color: #f3f3f3;
+}
+
+/* Form */
+.form {
+  width: clamp(320px, 30%, 430px);
+  margin: 0 auto;
+  /* border: 1px solid #ccc; */
+  border-radius: 0.35rem;
+  padding: 1.5rem;
+}
+
+.form-step {
+  display: none;
+  transform-origin: top;
+  animation: animate 0.5s;
+}
+
+.form-step-active {
+  display: block;
+}
+
+.input-group {
+  margin: 2rem 0;
+}
+
+.input-group.text {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+/* Button */
+.btns-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
 .btn {
-    background-color: var(--line-border-fill);
-    color: #fff;
-    border: 0;
-    border-radius: 0.6rem;
-    cursor: pointer;
-    font-family: inherit;
-    padding: 0.8rem 3rem;
-    margin: 0.5rem;
-    font-size: 1.4rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 0;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.8rem 3rem;
+  margin: 0.5rem;
+  font-size: 1.4rem;
+  transition: 0.3s;
 }
-
-.btn:active {
-    transform: scale(0.98);
-}
-
-.btn:focus {
-    outline: 0;
+.btn:hover {
+  background-color: #0e88da;
 }
 
 .btn:disabled {
-    background-color: var(--line-border-empty);
+    background-color: var(--primary-color-empty);
     cursor: not-allowed;
 }

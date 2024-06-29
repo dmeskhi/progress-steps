@@ -7,18 +7,87 @@
     <title>Progress Steps</title>
 </head>
 <body>
-    <div class="container">
-        <div class="progress-container">
-            <div class="progress" id="progress"></div>
-            <div class="circle active">1</div>
-            <div class="circle">2</div>
-            <div class="circle">3</div>
-            <div class="circle">4</div>
+    <form action="#" class="form">
+        
+        <!-- Progress bar -->
+        <div class="progressbar">
+          <div class="progress" id="progress"></div>
+          
+          <div
+            class="progress-step progress-step-active"
+            data-title="Intro"
+          ></div>
+          <div class="progress-step" data-title="Contact"></div>
+          <div class="progress-step" data-title="DOB"></div>
+          <div class="progress-step" data-title="Password"></div>
         </div>
-
-        <button class="btn" id="prev" disabled>Prev</button>
-        <button class="btn" id="next">Next</button>
-    </div>
+  
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+          <div class="input-group text">
+            <h3>Welcome to David's Progress Steps</h3>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Numquam atque distinctio, provident eaque corporis libero 
+            vitae sed iure, doloremque consequuntur non dolores 
+            perferendis nemo nobis omnis, dolor ad? Veniam, sed!
+          </div>
+          <div class="input-group text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+           
+            
+          </div>
+          <div class="btns-group">
+            <button class="btn btn-prev" disabled>Previous</button>
+            <button class="btn btn-next">Next</button>
+          </div>
+        </div>
+        <div class="form-step">
+          <div class="input-group">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone" />
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+          </div>
+          <div class="btns-group">
+            <button class="btn btn-prev">Previous</button>
+            <button class="btn btn-next">Next</button>
+          </div>
+        </div>
+        <div class="form-step">
+          <div class="input-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" />
+          </div>
+          <div class="input-group">
+            <label for="ID">Country of Birth</label>
+            <input type="number" name="ID" id="ID" />
+          </div>
+          <div class="btns-group">
+            <button class="btn btn-prev">Previous</button>
+            <button class="btn btn-next">Next</button>
+          </div>
+        </div>
+        <div class="form-step">
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <div class="input-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+          </div>
+          <div class="btns-group">
+            <button class="btn btn-prev">Previous</button>
+            <input type="submit" value="Submit" class="btn" />
+          </div>
+        </div>
+      </form>
 <script src="script.js"></script>
 </body>
 </html>

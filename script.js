@@ -1,46 +1,47 @@
+const prevBtns = document.querySelectorAll(".btn-prev");
+const nextBtns = document.querySelectorAll(".btn-next");
 const progress = document.getElementById("progress");
-const prev = document.getElementById("prev");
-const next = document.getElementById("next");
-const circles = document.querySelectorAll(".circle");
-let currentActive = 1;
+const formSteps = document.querySelectorAll(".form-step");
+const progressSteps = document.querySelectorAll(".progress-step");
 
-next.addEventListener("click", () => {
-  currentActive++;
-  if (currentActive > circles.length) {
-    currentActive = circles.length;
-  }
+let formStepsNum = 0;
 
-  update();
+nextBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  });
 });
 
-prev.addEventListener("click", () => {
-  currentActive--;
-  if (currentActive < 1) {
-    currentActive = 1;
-  }
-
-  update();
+prevBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum--;
+    updateFormSteps();
+    updateProgressbar();
+  });
 });
 
-function update() {
-  circles.forEach((circle, idx) => {
-    if (idx < currentActive) {
-      circle.classList.add("active");
+function updateFormSteps() {
+  formSteps.forEach((formStep) => {
+    formStep.classList.contains("form-step-active") &&
+      formStep.classList.remove("form-step-active");
+  });
+
+  formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+  progressSteps.forEach((progressStep, idx) => {
+    if (idx < formStepsNum + 1) {
+      progressStep.classList.add("progress-step-active");
     } else {
-      circle.classList.remove("active");
+      progressStep.classList.remove("progress-step-active");
     }
   });
 
-  const actives = document.querySelectorAll(".active");
+  const progressActive = document.querySelectorAll(".progress-step-active");
 
-  progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + "%";
-
-  if (currentActive === 1) {
-    prev.disabled = true;
-  } else if (currentActive === circles.length) {
-    next.disabled = true;
-  } else {
-    prev.disabled = false;
-    next.disabled = false;
-  }
+  progress.style.width =
+    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
